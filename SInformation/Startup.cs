@@ -75,6 +75,16 @@ namespace SInformation
                 options.TokenLifespan = TimeSpan.FromHours(2);
             });
 
+            services.AddCors(options => {
+                options.AddPolicy("cors", policy => {
+                    policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                });
+            });
+
+
+            services.AddControllers().AddJsonOptions(options => {
+                options.JsonSerializerOptions.PropertyNamingPolicy = null;
+            });
 
 
 
@@ -121,7 +131,7 @@ namespace SInformation
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SInformation v1"));
             }
 
-            app.UseHttpsRedirection();
+            app.UseCors("cors");
 
             app.UseRouting();
 

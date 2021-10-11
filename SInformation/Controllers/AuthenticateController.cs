@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using SInformation.IdentityAuth;
-using SInformation.Models;
+using SInformation.shared.Models;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -58,7 +58,7 @@ namespace SInformation.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = string.Join(", ", errors) });
             }
 
-            return Ok(new Response { Status = "Succes", Message = "User Created Succesfully!" });
+            return Ok(new Response { Status = "Succes", Message = $"{user.UserName} User Created Succesfully!" });
         }
 
         [HttpPost]
@@ -97,7 +97,7 @@ namespace SInformation.Controllers
             if (await _roleManager.RoleExistsAsync(UserRoles.Admin))
                 await _userManager.AddToRoleAsync(user, UserRoles.Admin);
 
-            return Ok(new Response { Status = "Success", Message = "User created Successfully!" });
+            return Ok(new Response { Status = "Success", Message = $"{user.UserName}User created Successfully!" });
         }
 
         [HttpPost]

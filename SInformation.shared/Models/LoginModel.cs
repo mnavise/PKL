@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SInformation.Models
+namespace SInformation.shared.Models
 {
     public class LoginModel
     {

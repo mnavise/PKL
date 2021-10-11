@@ -4,19 +4,17 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SInformation.Models
+namespace SInformation.shared.Models
 {
-    public class ResetPasswordModel
+    public class ResetPasswordAdminModel
     {
-        [Required(ErrorMessage = "Username is required")]
+        [Required(ErrorMessage ="Username is required")]
         public string Username { get; set; }
 
-        [Required(ErrorMessage = "New password is required")]
+        [Required(ErrorMessage ="New password is required")]
         public string NewPassword { get; set; }
 
-        [Required(ErrorMessage = "Confirm new password is required")]
+        [Required(ErrorMessage ="Confirm new password is required")]
         public string ConfirmNewPassword { get; set; }
-
-        public string Token { get; set; }
     }
 }

@@ -1,0 +1,33 @@
+﻿@page "/counter"
+@inject Blazored.SessionStorage.ISessionStorageService sessionStorage
+@inject HttpClient httpClient
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+
+    private int currentCount = 0;
+    string message;
+    protected override async Task OnInitializedAsync()
+    {
+        // check if the token is available then request the API for Access the data
+        string token = await sessionStorage.GetItemAsStringAsync("token");
+        if (String.IsNullOrEmpty(token))
+        {
+            message = "The Authentication is not done, please login";
+        }
+        else
+        {
+            httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+            private void IncrementCount()
+            {
+                currentCount++;
+            }
+        }
+    }
+
+}
+
